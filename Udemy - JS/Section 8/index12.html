@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body onload="startImg()">
+    <div id="wrapper"></div>
+    <input type="text" name="myNum" onkeypress="return numCheck()" onpaste="return true">
+
+    <input type="text" name="myNum" onkeypress="return numCheck2()" onpaste="return true">
+
+    <script>
+      function numCheck(){
+        message(!isNaN(event.key));
+        return !isNaN(event.key);
+      }
+      function numCheck2(){
+        message(isNaN(event.key));
+        return isNaN(event.key);
+      }
+      function message(m){
+        document.getElementById('wrapper').innerHTML = m;
+      }
+    </script>
+
+  </body>
+</html>
