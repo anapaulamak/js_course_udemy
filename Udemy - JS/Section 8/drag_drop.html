@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+      .box{
+        height: 100px;
+        width: 100px;
+        padding: 20px;
+        margin: 0 50px;
+        display: inline-block;
+        border: 1px solid black;
+      }
+      #getEle{
+        background: red;
+      }
+    </style>
+
+  </head>
+
+  <body onload="startImg()">
+
+    <div id="wrapper">Drag and Drop</div>
+
+    <div class="box" ondrop="dDrop()" ondragover="nDrop()">1
+      <div id="getEle" ondragstart="dStart()" draggable="true">
+        Drag me please!
+      </div>
+    </div>
+
+    <div class="box" ondrop="dDrop()" ondragover="nDrop()">2</div>
+
+    <div class="box" ondrop="dDrop()" ondragover="nDrop()">3</div>
+
+    <div class="box" ondrop="dDrop()" ondragover="nDrop()">4</div>
+
+    <script>
+      var holderItem;
+
+      function dStart() {
+        message("drag started");
+        holderItem = event.target;
+      }
+
+
+      function nDrop() {
+        event.preventDefault();
+      }
+
+      function dDrop() {
+        event.preventDefault();
+        message("drop it");
+
+        if(event.target.className == "box") {
+          event.target.appendChild(holderItem);
+        }
+      }
+
+      function message(m) {
+        document.getElementById('wrapper').innerHTML = m;
+      }
+    </script>
+
+  </body>
+</html>
