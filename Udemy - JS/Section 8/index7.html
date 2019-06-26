@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body onload="myFun(',fulano')">
+    <div id="wrapper"> Page 7 </div>
+    <form name="myForm">
+      <input type="button" id="id1" value="click 1">
+      <input type="button" id="id2" value="click 2">
+      <input type="button" id="id3" value="click 3">
+
+    </form>
+    <script>
+      var output = document.getElementById('wrapper');
+    
+      function myFun(a) {
+        output.innerHTML = "WELCOME " + a;
+      }
+    </script>
+
+  </body>
+</html>

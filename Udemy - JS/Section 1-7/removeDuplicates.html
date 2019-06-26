@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="output"></div>
+  <script>
+
+    var output = document.getElementById("output");
+    var myArray = ["hello", "world", 123, 234, 123, "javascript", 
+    "hello", "world", 123, 234, 123, "javascript", 23545, 134234, 'anapaula'];
+    var myArrayClean = removeDup(myArray);
+    output.innerHTML = myArray + "<br>" + myArrayClean;
+
+    function removeDup(arr) {
+      var cArray = [];
+      var cObject = {};
+      var z = "";
+
+      for(var x = 0;  x < arr.length; x++){
+        //console.log(arr[x]);
+        cObject[arr[x]] = 'whatever';
+      }
+
+      console.log(cObject);
+
+      for(z in cObject){
+        //console.log(z);
+        cArray.push(z);
+      }
+
+      return cArray;
+    }
+  </script>
+</body>
+</html>

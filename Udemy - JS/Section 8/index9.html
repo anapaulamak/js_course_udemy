@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div id="wrapper"></div>
+    <form>
+      First Name:
+      <input type="text" name="e1" value="Laurence" onblur="cFun()">
+      <br>
+      Last Name:
+      <input type="text" name="e2" value="Svekis" onblur="cFun()">
+      <br>
+
+      <input type="button" onclick="sendInfo()" value="Submit">
+      <br>
+    </form>
+
+    <script>
+      function cFun() {
+        var p = event.target;
+        if(p.name == "e1"){
+          message("First name changed to, " + p);
+        } else {
+          message("Last name changed to, " + p);
+        }
+      }
+
+      function sendInfo() {
+        var p = event.target.parentElement;
+        var firstName = p.e1.value;
+        var lastName = p.e2.value;
+        message("Welcome, " + firstName + " " + lastName);
+      }
+
+      function message(m) {
+        document.getElementById('wrapper').innerHTML = m;
+      }
+    </script>
+
+  </body>
+</html>

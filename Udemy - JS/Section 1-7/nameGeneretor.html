@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="output"></div>
+  <input type="button" onClick="myFun3()" value="Click me">
+  
+  <script>
+
+    var adj = ["super", "wonderful", "bad", "angry", "careful"];
+    var output = document.getElementById("output");
+    
+    function myFun3() {
+      var question = prompt("what is your name?");
+      var radomAdj = Math.floor(Math.random() * adj.length);
+      output.innerHTML += adj[radomAdj] + " " +  question + "<br>" ;;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="output"></div>
+  <script>
+    var output = document.getElementById("output");
+    var a = 1000;
+
+    function outsideFun() {
+      var b = 2000;
+      function insideFun() {
+        b++;
+        return b;
+      }
+      insideFun();
+      var c = insideFun();
+      var d = function (){
+        b++; 
+        return b;
+      }
+      d();
+      var e = d();
+      console.log(c);
+    }
+
+    outsideFun();
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  
+  <input type="button" onclick="start()" value="Start Game">
+  <div id="output"></div>
+  
+  <script>
+    // var secretWord = ["JavaScript", "CSS", "Html", "Nice"];
+    // var mysteryNum;
+    // var output = document.getElementById("output");
+
+    // function start () {
+    //   mysteryNum = Math.floor(Math.random() * secretWord.length);
+    //   getSecret(prompt ("what is the word?"));    
+    // }
+    // function getSecret(secret) {
+    //   if(secret == secretWord[mysteryNum]) {
+    //     output.innerHTML = "You are correct";
+    //   } else {
+    //     getSecret(prompt("Guess Again?"));
+    //   }
+    // }
+
+    var secretWord = ["JavaScript", "CSS", "Html", "Nice"];
+    var output = document.getElementById('output');
+
+    function start() {
+      shuffleArray(secretWord);
+      output.innerHTML += secretWord + "<br>";
+    }
+
+    function shuffleArray(arr) {
+      for(var x = arr.length - 1; x > 0; x--){
+        var holder =  Math.floor(Math.random() * (x+1));
+        var temp = arr[x];
+        arr[x] = arr[holder];
+        arr[holder] = temp;
+      }
+      return arr;
+    }
+  </script>
+</body>
+</html>

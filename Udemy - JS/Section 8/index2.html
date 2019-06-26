@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div id="wrapper"> Page 2 </div>
+    <a href="index1.html">index1</a>
+    <a href="index2.html">index2</a>
+    <a href="index3.html">index3</a>
+    <input type="button" onclick="goBack()" value="Back">
+    <input type="button" onclick="print()" value="Print">
+
+    <script>
+      var output = document.getElementById('wrapper');
+      function goBack(){
+        window.history.go(-1);
+      }
+    </script>
+
+  </body>
+</html>

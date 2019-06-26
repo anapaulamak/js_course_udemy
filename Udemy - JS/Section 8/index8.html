@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div id="wrapper"> Page 8 </div>
+    <img id="imgSwap" 
+    onmouseover="cImg(this)" onmouseout="bImg(this)">
+
+    <script>
+      var imgHolder = "https://via.placeholder.com/350x150/222/ffff00?text=Image10";
+
+      document.getElementById('imgSwap').onclick = function() {
+        message("clicked")
+      }
+
+      window.onload = function() {
+        document.getElementById('imgSwap').src = imgHolder;
+      }
+
+      function cImg(t) {
+        message(t.src);
+        imgHolder = t.src;
+        t.src="https://via.placeholder.com/350x150/ff0000/fff?text=Image2"
+      }
+
+      function bImg(t){
+        t.src=imgHolder;
+      }
+
+      function message(m) {
+        document.getElementById('wrapper').innerHTML = m;
+      }
+    </script>
+
+  </body>
+</html>

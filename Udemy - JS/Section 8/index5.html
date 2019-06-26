@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body>
+    <div id="wrapper"> Page 5 </div>
+    <form name="myForm">
+      <input type="text" id="url" name="url" value="http://www.google.com">
+      <br><br>
+
+      <input type="button" onclick="goUrl()" value="Go to a URL">
+      <br><br>
+      
+      <input type="button" onclick="goFavUrl('http://www.discoveryvip.com')" value="Go to your favorite URL">
+      <br><br>
+
+      <input type="button" onclick="myValue()" value="Value">
+    </form>
+    <script>
+      var output = document.getElementById('wrapper');
+      function goUrl(){
+        var url = document.getElementById("url").value;
+        window.location = url;
+      }
+
+      function goFavUrl(url){
+        window.location = url;
+      }
+
+      function myValue() {
+        document.getElementById("wrapper").innerHTML = document.myForm.url.value;
+      }
+    </script>
+
+  </body>
+</html>
