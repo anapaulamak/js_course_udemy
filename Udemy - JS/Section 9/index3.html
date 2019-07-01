@@ -6,64 +6,90 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .highlight {
-          background: yellow;
-        }
-        #pickme .output{
-          background-color: aqua;
-        }
-        input[name="last"]{
+        div .output{
           background: red;
         }
       </style>
   </head>
 
-  <body>
+  <body onload="start()">
     <div id="message"></div>
     <div id="message1"></div>
 
     <div class="output">Test me 1</div>
     <div class="output">Test me 2</div>
+
     <div id="pickme">
       <div class="output">Test me 3</div>
     </div>
 
-    <input type="text" name="first">
-    <input type="text" name="last">
+    <input type="text" name="queryStuff" id="queryStuff">
+    <input type="button" onclick="mySel()" value="Get Query">
+
+    <!-- <input type="text" name="first">
+    <input type="text" name="last"> -->
 
     <div class="output highlight">Test me 4</div>
-    <div class="output">Test me 5</div>
-    <div class="output">Test me 6</div>
-    <div class="output">Test me 7</div>
+
+    <div id="pickme2">
+      <div class="output">Test me 5</div>
+      <div class="output">Test me 6</div>
+      <div class="output">Test me 7</div>
+    </div>
+
     <div class="output">Test me 8</div>
     <div class="output highlight">Test me 9</div>
     <div class="output">Test me 10</div>
 
     <script>
-      var elClass = document.getElementsByClassName("output");
-      var highClass = document.getElementsByClassName("highlight");
+      // var elClass = document.getElementsByClassName("output");
+      // var highClass = document.getElementsByClassName("highlight");
 
       var message = document.getElementById("message");
-      var message1 = document.getElementById("message1");
+      // var message1 = document.getElementById("message1");
 
-      for (var x = 0; x < elClass.length; x++){
-        elClass[x].onclick = function(){
-          message.innerHTML = event.target.innerHTML;
-        }
+      // for (var x = 0; x < elClass.length; x++){
+      //   elClass[x].onclick = function(){
+      //     message.innerHTML = event.target.innerHTML;
+      //   }
+      // }
+
+      // for (var x = 0; x < highClass.length; x++){
+      //   highClass[x].onclick = function(){
+      //     message1.innerHTML = "CLICKED high";
+      //   }
+      // } 
+
+      // var el = qs('.output');
+
+      // function mySel() {
+      //   var a = document.getElementById("queryStuff").value;
+      //   var el = qs(a);
+      //   var html = "Results <br>";
+      //   for(var x = 0; x < el.length; x++){
+      //     html += el[x].innerText + "<br>";
+      //   }
+      //   document.getElementById("message").innerHTML = "html";
+      // }
+
+      // function qs(el) {
+      //   return document.querySelectorAll(el);
+      // }
+
+      var bgColor = ["red", "blue", "yellow", "green", "pink", "purple"];
+      var c;
+      var el = document.querySelectorAll('.output');
+
+      function start() {
+        setInterval(swapBg, 2000);
       }
 
-      for (var x = 0; x < highClass.length; x++){
-        highClass[x].onclick = function(){
-          message1.innerHTML = "CLICKED high";
+      function swapBg() {
+        for (var x = 0; x < el.length; x++) {
+          c = bgColor[Math.floor(Math.random() * bgColor.length)];
+          el[x].style.backgroundColor = c;
         }
-      } 
-    </script>
-
-    <script>
-      var message = document.getElementById("message");
-      var message1 = document.getElementById("message1");
-
-      var el = document.querySelector("#message");
+      }
 
     </script>
 
