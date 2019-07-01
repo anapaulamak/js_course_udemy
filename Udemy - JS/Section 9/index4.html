@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      #overlay {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 400px;
+        height: 200px;
+        background: #ddd;
+        border: 1px solid black;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+
+  <body onload="start()">
+    <input type="button" id="oLay" value="Pop Up Window">
+    <div id="message"></div>
+    <div id="message1"></div>
+
+    <div class="output">Test me 1</div>
+    <div class="output">Test me 2</div>
+
+    <div id="pickme">
+      <div class="output">Test me 3</div>
+    </div>
+
+    <input type="text" name="queryStuff" id="queryStuff">
+    <input type="button" onclick="mySel()" value="Get Query">
+    
+    <div class="output highlight">Test me 4 Test me 4 Test me 4 
+      Test me 4 Test me 4 Test me 4 Test me 4 Test me 4 Test me 4 
+      Test me 4 Test me 4 Test me 4 Test me 4 Test me 4 Test me 4 
+      Test me 4</div>
+
+    <div id="pickme2">
+      <div class="output">Test me 5</div>
+      <div class="output">Test me 6</div>
+      <div class="output">Test me 7</div>
+    </div>
+
+    <div class="output">Test me 8 Test me 8 Test me 8 Test me 8 Test me 8
+      Test me 8 Test me 8 Test me 8 Test me 8 
+    </div>
+    <div class="output highlight">Test me 9</div>
+    <div class="output">Test me 10</div>
+
+    <br>
+
+    <div id="overlay">
+      <div>
+        <p> Some default content here nothing important. </p>
+      </div>
+    </div>
+
+    <script>
+      document.getElementById('oLay').onclick = function() {
+        var el = document.getElementById('overlay');
+        el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+      }
+    </script>
+
+  </body>
+</html>
