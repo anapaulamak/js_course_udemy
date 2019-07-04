@@ -12,6 +12,12 @@
   <body>
 
     <div id="message"> Information about Javascript </div>
+
+    <div>
+      <input type="text" id="addFriend">
+      <input type="button" id="addNew" value="Add Friend">
+    </div>
+
     <div id="output"></div>
 
     <script>
@@ -20,14 +26,37 @@
       var myArray = ['Laurence', 'Mike', 'John', 'Larry', 'Kim', 'Joanne', 'Lisa', 'Janet', 'Jane'];
       var el = document.getElementById("message");
       var message = document.getElementById('message');
+      var addNew = document.getElementById('addNew');
+
+      addNew.onclick = function () {
+        var q = document.getElementById('addFriend').value;
+        var tr = document.createElement('tr');
+        var td = document.createElement('td');
+        tr.appendChild(td);
+        td.appendChild(document.createTextNode(myArray.length+1));
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.appendChild(document.createTextNode(q));
+        td = document.createElement('td');
+        tr.appendChild(td);
+        td.appendChild(document.createTextNode('0'));
+        var container = document.querySelector('#output table');
+
+        container.appendChild(tr);
+        myArray.push(q);
+
+      }
 
       function build() {
         var html = '<h1>My friends Table</h1><table>';
+
         for(var x = 0; x < myArray.length; x++) {
           html += '<tr data-row="' + x + '" data-vote="0"><td class="box">' 
           + (x+1) + '</td><td>' + myArray[x] + '</td><td>0</td></tr>';
         }
+
         html += '</table>';
+
         document.getElementById('output').innerHTML = html;
 
         var elbox = document.querySelectorAll('#output .box');
@@ -44,13 +73,13 @@
             v++;
             console.log(v);
             console.log(this.parentElement.lastElementChild);
+
             this.parentElement.lastElementChild.innerText = v;
             this.parentElement.setAttribute("data-vote", v);
 
           }
         }
       }
-
     </script>
 
   </body>
