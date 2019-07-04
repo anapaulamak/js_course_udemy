@@ -31,20 +31,28 @@
       addNew.onclick = function () {
         var q = document.getElementById('addFriend').value;
         var tr = document.createElement('tr');
-        var td = document.createElement('td');
-        tr.appendChild(td);
-        td.appendChild(document.createTextNode(myArray.length+1));
-        td = document.createElement('td');
-        tr.appendChild(td);
-        td.appendChild(document.createTextNode(q));
-        td = document.createElement('td');
-        tr.appendChild(td);
-        td.appendChild(document.createTextNode('0'));
+
+        tr.setAttribute('data-row', myArray.length);
+        tr.setAttribute('data-vote', 0);
+        tr.innerHTML = '<td class="box">'+(myArray.length-1) + '</td> <td>' + q +'</td> <td>0</td>';
+
+
+        // var td = document.createElement('td');
+        // tr.appendChild(td);
+        // td.appendChild(document.createTextNode(myArray.length+1));
+        // td = document.createElement('td');
+        // tr.appendChild(td);
+        // td.appendChild(document.createTextNode(q));
+        // td = document.createElement('td');
+        // tr.appendChild(td);
+        // td.appendChild(document.createTextNode('0'));
+
+
         var container = document.querySelector('#output table');
 
         container.appendChild(tr);
         myArray.push(q);
-
+        voteCount();
       }
 
       function build() {
@@ -58,7 +66,10 @@
         html += '</table>';
 
         document.getElementById('output').innerHTML = html;
+        voteCount();
+      }
 
+      function voteCount() {
         var elbox = document.querySelectorAll('#output .box');
         var a;
         var v;
