@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>JS course</title>
+    <style>
+      td {
+        border: 1px solid black;
+        padding: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div id="message"> Information about Javascript </div>
+
+    <div>
+      <input type="text" id="addItem">
+      <input type="button" id="addNew" value="Add Item">
+    </div>
+
+    <div id="output">
+      <h1>Shopping List</h1>
+      <ol id="sList">
+        
+      </ol>
+    </div>
+
+    <script>
+      document.getElementById('addNew').onclick = function() {
+        addOne();
+      }
+
+      function addOne() {
+        var a = document.getElementById("addItem").value;
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode(a));
+
+        document.getElementById('sList').appendChild(li);
+        
+        console.log(li);
+        
+
+      }
+
+    </script>
+
+  </body>
+</html>
