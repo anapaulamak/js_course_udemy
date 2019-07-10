@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    #message, #output{
+      border: 1px solid black;
+      padding: 10px;
+    }
+    </style>
+
+  </head>
+
+  <body>
+    <div id="message">Index 10</div>
+    <div id="output">1
+      <div>2
+        <div>3
+          <div>4
+            <div>5
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function bup() {
+        console.log(this.innerText);
+      }
+
+      var d = document.getElementsByTagName('div');
+
+      for (var x = 0; x < d.length; x++) {
+        d[x].addEventListener('click', bup, true);
+      }
+    </script>
+
+  </body>
+</html>
