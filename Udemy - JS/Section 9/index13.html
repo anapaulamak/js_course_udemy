@@ -6,7 +6,13 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-
+      td {
+        border: 1px solid #ddd;
+        padding: 10px;
+      }
+      td:first-child {
+        width: 300px;
+      }
     </style>
 
   </head>
@@ -17,10 +23,66 @@
       <input type="button" id="addNew" value="Add Friend">
     </div>
 
-    <div id="output"></div>
+    <div class="output"></div>
 
     <script>
       var myArray = ['Laurence', 'Mike', 'John', 'Larry', 'Kim', 'Joanne', 'Lisa', 'Janet', 'Jane'];
+      window.onload = build;
+
+      document.getElementById('addNew').addEventListener('click', addN, false);
+
+      function addN() {
+        var a = document.getElementById('addFriend').value;
+        myArray.push(a);
+        build();
+      }
+
+      function build() {
+        var html = "<h1> Click Table </h1> <table>";
+        for(var x = 0; x < myArray.length; x++){
+          html += '<tr id="id' +x+'" data-row="'+x+'"><td>' + myArray[x] + 
+            '</td><td><a href="#" data-action="delete">Del</a></td>' +
+            '<td><a href="#" data-action="edit">Edit</a></td>';
+        }
+        document.querySelector('.output').innerHTML = html;
+
+        var dad = document.querySelectorAll('[data-action="delete"]');
+        for(var x = 0; x < dad.length; x++){
+          dad[x].addEventListener('click', function() {
+            event.preventDefault();
+            var iValue = this.closest('[data-row').getAttribute('data-row');
+            var r = myArray.splice(iValue, 1);
+            build();
+            console.log(iValue);
+          })
+        }
+
+        var dae = document.querySelectorAll('[data-action="edit"]');
+        for(var x = 0; x < dae.length; x++){
+          dae[x].addEventListener('click', function() {
+            event.preventDefault();
+            var row = this.closest('[data-row');
+            var rid = row.getAttribute('data-row');
+            row.style.backgroundColor = "yellow";
+
+            var td = row.firstElementChild;
+            var input = document.createElement('input');
+            input.type = "text";
+            input.value = td.innerText;
+            td.innerHTML = "";
+            td.appendChild(input);
+            input.focus();
+            input.onblur = function() {
+              td.removeChild(input);
+              td.innerHTML = input.value;
+              myArray[rid] = input.value;
+              row.style.backgroundColor = "white";
+
+            }
+
+          })
+        }
+      }
     </script>
 
   </body>
