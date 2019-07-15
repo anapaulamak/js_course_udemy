@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="message">Complete JsCourse</div>
+  <input type="text" id="myString">
+  <br>
+  <input type="number" id="guess">
+  <br>
+  <input type="button" value="guess" onclick="checkGuess()">
+
+  <script>
+    var a = "world hello";
+    var b = new String("Hello World");
+    var message = document.getElementById('message');
+
+    function checkGuess() {
+      var myString = document.querySelector("#myString").value;
+      var myGuess = document.querySelector("#guess").value;
+
+      if(myString.length == myGuess){
+        message.innerHTML = "Correct it was " + myString.length; 
+      } else {
+        message.innerHTML = "WRONG it was " + myString.length; 
+      }
+    }
+  </script>
+
+</body>
+</html>
