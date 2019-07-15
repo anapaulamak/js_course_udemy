@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="message">Complete JsCourse</div>
+  <input type="button" value="pop" onclick="popup()"> 
+  <input type="button" value="close" onclick="popupclose()"> 
+
+  <script>
+    var wn;
+
+    function popup() {
+      var url = "208_newWindowOpen.html";
+      var opt = "top=100, left=500, width=200px, height=200px";
+      wn = window.open(url, "_blank", opt);
+    }
+
+    function popupclose() {
+      wn.close();
+    }
+
+  </script>
+
+</body>
+</html>
