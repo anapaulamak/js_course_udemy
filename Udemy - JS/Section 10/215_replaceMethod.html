@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <div id="message">Complete JavaScript Course</div>
+  <input type="text" id="myString">
+  <br>
+  <input type="button" value="Replace" onclick="rHeading()">
+
+  <script>
+    var a = "world hello";
+    var b = new String("Hello World");
+    var message = document.getElementById('message');
+    var holder = "JavaScript";
+
+    function rHeading() {
+      var m = document.getElementById('myString').value;
+      var c = message.innerText;
+      console.log(c);
+      c = c.replace(holder, m);
+      holder = m;
+      message.innerText = c;
+    }
+  </script>
+
+</body>
+</html>
