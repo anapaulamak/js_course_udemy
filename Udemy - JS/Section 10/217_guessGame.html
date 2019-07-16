@@ -5,20 +5,72 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Page Title</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .game{
+      background: #d5ffcc;
+      width: 400px;
+      height: 350px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border-radius: 7px;
+    }
+    .game h1{
+      color: #204e20;
+    }
+    .game input[type="button"]{
+      margin: 10px;
+      background: #f8883f;
+      border: none;
+      padding: 7px 15px;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 15px;
+    }
+    .game input[type="button"]:hover{
+      background: #f88539a8;
+    }
+    #score{
+      font-size: 25px;
+    } 
+    .score{
+      background: #fff;
+      width: 100px;
+      height: 60px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 10px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <div id="message1">Complete JavaScript Course</div>
-  <div id="message2"></div>
+  <div class="game">
+    <h1>Guess the word</h1>
+    <p id="message1"></p>
+    <input type="text" id="myString">
+    <br>
+    <input type="button" value="Guess" onclick="rGuess()">
+    
+    <p id="message2"></p>
+    
+    <div class="score">
+      <label>My Score: </label>
+      <br>
+      <label id="score"></label>
+    </div>
 
-  <input type="text" id="myString">
-  <br>
-  <input type="button" value="Guess" onclick="rGuess()">
-  <label>My Score</label>
-  <label id="score"></label>
+  </div>
 
   <script>
     var message = document.getElementById('message');
-    var myArr = ["javascript", "Hello", "world", "course"];
+    var myArr = ["javascript", "Hello", "world", "course", "python", "computer", "laptop", "technology"];
     window.onload = sWord;
     var randomWord;
     var score = 0;
@@ -36,7 +88,7 @@
         w = w.substr(0,i) + w.substr(i+1);
       }
 
-      message1.innerHTML = "Guess this word: " + s;
+      message1.innerHTML = s;
     }
 
     function rGuess(){
