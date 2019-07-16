@@ -7,29 +7,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
   <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+    #message1{
+      font-size: 23px;
+    }
+    #message2{
+      margin: 10px;
+    }
     #output{
       width: 200px;
       height: 200px;
       display: block;
+      border-radius: 50%;
+      margin: 10px auto;
     }
     #cButtons > div {
       width: 50px;
       display: inline-block;
       height: 50px;
       text-align: center;
+      border-radius: 50%;
+      color: #fff;
       }
     .box{
       width: 50px;
       height: 50px;
       display: inline-block;
+      border-radius: 50%;
+      margin: 0px 5px;
+    }
+    input[type="button"]{
+      background: gray;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 20px;
+      color: #ffff;
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px;
+    }
+    input[type="button"]:focus{
+      outline: none;
     }
   </style>
 </head>
 <body>
-  <div id="message">Complete JavaScript Course</div>
+  <div id="message1">REMEMBER THE SEQUENCE COLOR</div>
   <input type="button" value="start" onclick="start()">
+
   <div id="output"></div>
+
   <div id="cButtons"></div>
+  <div id="message2"></div>
   <div id="guess"></div>
 
   <script>
@@ -38,7 +70,7 @@
     var myT;
     var loop = 0;
     var output = document.getElementById('output');
-    var message = document.getElementById('message');
+    var message = document.getElementById('message2');
     var guess = document.getElementById('guess');
     var gameplay = false;
 
@@ -52,16 +84,13 @@
       message.innerHTML = "Game started";
 
       for (var x = 0; x < colorArr.length; x++){
-        html+='<div class="'+ colorArr[x] +'"style="background-color:'+ colorArr[x] +'" onclick="oGuess()">' + colorArr[x] + '</div>';
+        html+='<div class="'+ colorArr[x] +'"style="background-color:'+ colorArr[x] +'; margin: 0px 5px;" onclick="oGuess()"></div>';
       }
-
       document.getElementById('cButtons').innerHTML = html;
-
       for (var x = 0; x < 4; x++){
         var r = colorArr[Math.floor(Math.random()*colorArr.length)];
         arr1.push(r);
       }
-
       loop = 0;
       myT = setTimeout(goWhite, 200);
     }
@@ -83,7 +112,6 @@
         }
         guess.appendChild(d);
         arr2.push(g);
-
         if(arr2.length == arr1.length) {
           gameplay = false;
           if(arr1.toString() == arr2.toString()){
