@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <div id="message">Complete JsCourse</div>
+  <div id="message">Complete JavaScript Course</div>
   <input type="text" id="myString">
   <br>
   <input type="number" id="guess">
@@ -18,6 +18,13 @@
     var a = "world hello";
     var b = new String("Hello World");
     var message = document.getElementById('message');
+
+    var str = message.innerText; 
+    var hello = b.substr(0,6);
+    var c = str.toLowerCase().indexOf('javascript');
+    var j = str.substr(c, 1) + str.toLowerCase().substr(c + 1, 9);
+    var jscript = j.substr(0, 4) + j.toUpperCase().substr(4, 1) + j.substr(5);
+    message.innerText =  hello + jscript;
 
     function checkGuess() {
       var myString = document.querySelector("#myString").value;
