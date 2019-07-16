@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    #output{
+      width: 200px;
+      height: 200px;
+      display: block;
+    }
+    #cButtons > div {
+      width: 50px;
+      display: inline-block;
+      height: 50px;
+      text-align: center;
+      }
+    .box{
+      width: 50px;
+      height: 50px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div id="message">Complete JavaScript Course</div>
+  <input type="button" value="start" onclick="start()">
+  <div id="output"></div>
+  <div id="cButtons"></div>
+  <div id="guess"></div>
+
+  <script>
+    var arr1 = [];
+    var arr2 = [];
+    var myT;
+    var loop = 0;
+    var output = document.getElementById('output');
+    var message = document.getElementById('message');
+    var guess = document.getElementById('guess');
+    var gameplay = false;
+
+    function start() {
+      var colorArr = ["red", "green", "blue", "yellow"];
+      var html = "";
+      arr1 = [];
+      arr2 = [];
+      guess.innerHTML = "";
+      gameplay = true;
+      message.innerHTML = "Game started";
+
+      for (var x = 0; x < colorArr.length; x++){
+        html+='<div class="'+ colorArr[x] +'"style="background-color:'+ colorArr[x] +'" onclick="oGuess()">' + colorArr[x] + '</div>';
+      }
+
+      document.getElementById('cButtons').innerHTML = html;
+
+      for (var x = 0; x < 4; x++){
+        var r = colorArr[Math.floor(Math.random()*colorArr.length)];
+        arr1.push(r);
+      }
+
+      loop = 0;
+      myT = setTimeout(goWhite, 200);
+    }
+    
+    function oGuess() {
+      if(gameplay){
+        var g = event.target.className;
+        var d = document.createElement('div');
+        d.className = 'box';
+        d.style.backgroundColor = g;
+        d.dataset.v = arr2.length;
+        d.onclick = function() {
+          if(gameplay){
+            var iRemove = event.target.getAttribute('data-v');
+            arr2.splice(iRemove,1);
+            event.target.parentNode.removeChild(event.target);
+            console.log(iRemove);
+          }
+        }
+        guess.appendChild(d);
+        arr2.push(g);
+
+        if(arr2.length == arr1.length) {
+          gameplay = false;
+          if(arr1.toString() == arr2.toString()){
+            message.innerText = 'you were correct :)';
+          }else{
+            message.innerHTML = "you were wrong :( <br> Your guess was " 
+            + arr2 + " and <br> the correct order was " + arr1;
+          }
+        }
+      }
+    }
+
+    function goWhite() {
+      output.style.backgroundColor = "white";
+      myT = setTimeout(goColor, 200);
+    }
+
+    function goColor() {
+      output.style.backgroundColor = arr1[loop];
+      loop++;
+      if(loop >= arr1.length) {
+        clearTimeout(myT);
+      }
+      myT = setTimeout(goWhite, 1000);
+    }
+  </script>
+
+</body>
+</html>
