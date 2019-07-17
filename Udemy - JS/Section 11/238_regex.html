@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="output">Complete JavaScript Course</div>
+  <br>
+  <input type="button" onclick="myFun()" value="Validate Inputs">
+  <br><br>
+  <input type="text" id="email" value="email@email.com">
+  <br><br>
+  <input type="text" id="num" value="1234">
+  <br><br>
+  <input type="text" id="char" value="abcde">
+
+  <script>
+    var output = document.getElementById('output');
+    var str = "askdjslkjdfs javaScript sdlfs sdfsldf JavaScript kjsdfkjsdhf123 JavaScript 123123 123123 123123";
+
+    function cEmail(e){
+      var p = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z.]+)/ig;
+      var r = e.match(p);
+      return r == null ? false : true;
+    }
+    function cNum(e){
+      var p = /\D/;
+      var r = e.match(p);
+      return r == null ? true : false;
+    }
+    function cChar(e){
+      var p = /[^A-Za-z]/ig;
+      var r = e.match(p);
+      return r == null ? true : false;
+    }
+
+    function myFun(){
+      var i = document.getElementsByTagName('input');
+
+      for (var x = 0; x < i.length; x++){
+        if((i[x].value == "")){
+          console.log("No value in "+ i[x].id);
+        }
+
+        if(i[x].type == "text"){
+          if(i[x].id == "email"){
+            if(cEmail(i[x].value)){
+              console.log("Email Valid");
+            }else{
+              console.log("Bad Email");
+            }
+          }
+          if(i[x].id == "num"){
+            if(cNum(i[x].value)){
+              console.log("Nums Valid");
+            }else{
+              console.log("Non Nums");
+            }
+          }
+          if(i[x].id == "char"){
+            if(cChar(i[x].value)){
+              console.log("Chars Valid");
+            }else{
+              console.log("Non Chars");
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
