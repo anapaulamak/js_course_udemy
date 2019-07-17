@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+  <form name="myForm">
+    <textarea name="txtarea" rows=12 cols=100></textarea>
+    <br><br>
+    <input type="button" onclick="lookUp()" value="get emails">
+    <br><br>
+    <textarea name="emails" rows=3 cols=100></textarea>
+  </form>
+
+  <script>
+    function lookUp(){
+      var rawTxt = document.myForm.txtarea.value;
+      var eData = rawTxt.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z.]+)/ig);
+      
+      var html = eData.toString();
+      var holder = [];
+
+      for(var x=0; x<eData.length; x++){
+        if(holder.indexOf(eData[x]) == -1){
+          holder.push(eData[x]);
+        }
+      }
+      console.log(holder);
+      document.myForm.emails.value = holder.join(' | ');
+    }
+  </script>
+
+</body>
+</html>
