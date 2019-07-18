@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+  <!-- precisa de uma url para testar os cookies 
+  https://www.apachefriends.org/index.html-->
+  <script>
+    function cCookie(name, value, days){
+      var e = "";
+      if(days){
+        var d = new Date();
+        date.setTime(d.getTime() + (days*24*60*60*1000));
+        e = "; expires=" + d.toUTCString();
+      }
+      document.cookie = name + "=" + value + e + "; path=/";
+    }
+    function rCookie(name){
+      var p = name + "=";
+      var c = document.cookie.split(';');
+
+      for(var x = 0; x < c.length; x++){
+        // var t = c[x].chatAt(0) == '' ? c[x].substring(1) : c[x];
+        // var t = c[x].trim();
+        var t = c[x].replace(/^\s+|\s+$/gm,'');
+        if(t.indexOf(p) == 0){
+          return t.substring(p.length, t.length);
+          console.log(t);
+        }
+      }
+      return "";
+    }
+
+    function dCookie(name){
+      cCookie(name, "", -1);
+    }
+
+    var myCookie = rCookie('test');
+  </script>
+
+</body>
+</html>

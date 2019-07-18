@@ -39,6 +39,13 @@
       }
       console.log(holder);
       document.myForm.emails.value = holder.join(' | ');
+
+      var p = new RegExp("Java");
+      var result1 = p.test(rawTxt);
+      var result2 = p.exec(rawTxt);
+
+      console.log(result1);
+      console.log(result2);      
     }
   </script>
 
