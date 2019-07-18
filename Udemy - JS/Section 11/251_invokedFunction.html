@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+
+  <script>
+    (function() {
+      //IIFE - Immediately -invoked funtion
+      var message = "Hello World";
+      document.getElementById('output').innerHTML = message;
+    })();
+
+    (function() {
+      document.getElementById('output').innerHTML = "Welcome back"
+    })();
+
+    console.log(message);
+  </script>
+
+</body>
+</html>
