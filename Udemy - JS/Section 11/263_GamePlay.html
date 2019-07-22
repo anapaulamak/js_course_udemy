@@ -11,16 +11,22 @@
       text-align: center;
       font-family: 'Open Sans', sans-serif;
     }
+    h1{
+      color: #397500;
+    }
     .btn{
-      background: grey;
+      background: #fa7d41;
       text-align: center;
       border-radius: 10px;
-      font-size: 1em;
+      font-size: 2em;
+      font-weight: bold;
       padding: 15px;
       color: #fff;
+      width: 30%;
+      margin: 50px auto;
     }
     .btn:hover{
-      background: lightgrey;
+      background: #fa7d41b5;
     }
     .gameTile{
       display: inline-block;
@@ -28,12 +34,16 @@
     }
     .flipImage{
       max-width: 110px;
+      border-radius: 10px;
+    }
+    #gameboard{
+      margin: 5% 20%;
     }
   </style>
 </head>
 <body>
-
-  <div id="output">Complete JavaScript Course</div>
+  <h1>POKEMON GAME</h1>
+  <div id="output"></div>
   <div id="wrapper">
     <div id="start" class="btn">Start</div>
     <div id="score"></div>
@@ -56,7 +66,6 @@
 
     function startGame() {
       sb.style.display = 'none';
-      message.innerHTML = "It is working" + gamePlay;
       if(!gamePlay){
         gamePlay = true;
         buildArray();
@@ -72,7 +81,7 @@
       tileArray.forEach(function(ele){
         x++;
         html += '<div class="gameTile">';
-        html += '<img id="cardz'+ x +'" src="http://via.placeholder.com/250/000000/ffffff?text=click" onclick="pickCard('+ (x-1) +',this)" class="flipImage"></div>';
+        html += '<img id="cardz'+ x +'" src="http://via.placeholder.com/250/fa7d41/ffffff?text=CLICK ME" onclick="pickCard('+ (x-1) +',this)" class="flipImage"></div>';
       })
       gameBoard.innerHTML = html;
     }
@@ -88,7 +97,7 @@
             cardFlipped = -1;
             playLockout = false;
             if(tfo.length == tileArray.length){
-              gameover();
+              setTimeout(gameover, 5000);
             }
           }else{
             message.innerHTML = "no match";
@@ -104,7 +113,7 @@
     }
 
     function gameover(){
-      message.innerHTML = "Game Over";
+      message.innerHTML = "GAME IS OVER";
       sb.style.display = 'block';
       gamePlay = false;
       tfo = [];
@@ -119,7 +128,7 @@
     function hideCard(){
       for (var x = 0; x < 2; x++){
         var vid = tfo.pop();
-        document.getElementById(vid).src = "http://via.placeholder.com/250/000000/ffffff?text=click";
+        document.getElementById(vid).src = "http://via.placeholder.com/250/fa7d41/ffffff?text=CLICK ME";
       }
       clearInterval(timer);
       cardFlipped = -1;
@@ -132,7 +141,7 @@
     }
 
     function cardFlip(i, t){
-      t.src = "http://via.placeholder.com/250/ffffff/000000/?text=" + tileArray[i];
+      t.src = "imagem" + tileArray[i];
       tfo.push(t.id);
     }
 
