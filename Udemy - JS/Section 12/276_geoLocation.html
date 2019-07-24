@@ -11,23 +11,38 @@
       text-align: center;
       font-family: 'Open Sans', sans-serif;
     }
+    #map{
+      height: 100%;
+
+    }
   </style>
 </head>
 <body>
-
+<!-- I didn't work, need to pay to use google api -->
   <div id="output">Complete JavaScript Course</div>
+  <div id="map"></div>
 
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQfH1qeLxgbJ92dVqX6YgQ3dokuh5a0IE"></script>
   <script>
+    //AIzaSyAbDJK-RyHJI-urjNuFa3zhNwFlDa-3zWo
     window.onload = init;
+    var m = document.getElementById('map');
 
     function init(){
       navigator.geolocation.getCurrentPosition(placeMap);
     }
 
     function placeMap(data){
+      var options = {
+        center:{
+          lat:data.coords.latitude,
+          lng:data.coords.longitude,
+        },
+        zoom:5
+      }
+      var map = new google.maps.Map(m, options);
       console.dir(data);
     }
   </script>
-
 </body>
 </html>
