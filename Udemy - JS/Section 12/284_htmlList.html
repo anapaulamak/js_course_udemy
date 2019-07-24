@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .item{
+      border: 1px solid gray;
+      padding: 2%;
+      float: left;
+      width: 29%;
+      height: 300px;
+    }
+    .img-fluid{
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+
+  <script>
+    var items = [
+      {
+        name:'iPhone',
+        details:'White',
+        cost:500
+      },
+      {
+        name:'iPad',
+        details:'Black',
+        cost:800
+      },
+      {
+        name:'Cable',
+        details:'3 foot',
+        cost:50
+      },
+      {
+        name:'Camera',
+        details:'25MP',
+        cost:300
+      },
+      {
+        name:'Laptop',
+        details:'Intel i7',
+        cost:2000
+      },
+      {
+        name:'LCD Monitor',
+        details:'24 inch',
+        cost:200
+      },
+      {
+        name:'TV',
+        details:'50 inch',
+        cost:4500
+      }];
+
+      var html = '<br>';
+      var x = 0;
+
+      items.forEach(function(v){
+        html += '<div class="item">'+
+          '<h3>'+ v.name +'</h3>'+
+          '<img src="http://placehold.it/350x150" class="img-fluid">'+
+            '<div>'+
+              v.details +
+              '<a href="#"class="productItem"'+
+                'data-name="'+ v.name +'" '+ 
+                'data-s="'+ v.details +'" '+
+                'data-price="'+ v.cost +'" '+
+                'data-s="'+ v.details +'" '+
+                'data-id="'+ x +'"' +
+                '> Add to Cart </a></div></div>';
+        x++;
+        console.log(v);
+      })
+      document.getElementById('output').innerHTML += html;
+
+  </script>
+</body>
+</html>
