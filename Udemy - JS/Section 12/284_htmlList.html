@@ -22,7 +22,7 @@
     .img-fluid{
       max-width: 100%;
     }
-    .productItem{
+    .productItem, .btn{
       border: 1px solid gray;
       text-decoration: none;
       background: green;
@@ -31,6 +31,23 @@
       padding: 5px;
       font-size: 0.6em;
       display: inline-block;
+    }
+    .remove{
+      background: red;
+    }
+    table{
+      margin: auto;
+    }
+    td{
+      text-align: center;
+      border: solid 1px gray;
+      padding: 5px;
+    }
+    th{
+      text-align: center;
+      border: solid 1px gray;
+      padding: 5px;
+      font-size: 1.3em;
     }
   </style>
 </head>
@@ -44,37 +61,32 @@
       {
         name:'iPhone',
         details:'White',
-        cost:500
+        cost:50000
       },
       {
         name:'iPad',
         details:'Black',
-        cost:800
+        cost:80000
       },
       {
         name:'Cable',
         details:'3 foot',
-        cost:50
+        cost:5000
       },
       {
         name:'Camera',
         details:'25MP',
-        cost:300
+        cost:30000
       },
       {
         name:'Laptop',
         details:'Intel i7',
-        cost:2000
+        cost:200000
       },
       {
         name:'LCD Monitor',
         details:'24 inch',
-        cost:200
-      },
-      {
-        name:'TV',
-        details:'50 inch',
-        cost:4500
+        cost:20000
       }];
 
       var html = '<br>';
@@ -83,36 +95,64 @@
 
       function init(){
         buildItems();
-        var q = document.querySelectorAll('.productItem');
-        for(var x=0; x<q.length; x++){
-          q[x].addEventListener('click', function(e){
-            e.preventDefault();
-            addtocard();
-          })
-        }
+          var q = document.querySelectorAll('.productItem');
+          for (var x = 0; x < q.length; x++) {
+            q[x].addEventListener('click', function (e) {
+              e.preventDefault();
+              addToCart();
+            })
+          }
+      outputCart();
       }
 
-      function addtocard(){
+      function addToCart(){
         var iteminfo = event.target.dataset;
+        var itemincart = false;
         iteminfo.qty = 1;
-        shopcart.push(iteminfo);
-        sessionStorage.setItem('scart', JSON.stringify(shopcart));
-        outputCard();
+
+        shopcart.forEach(function (v) {
+          if (v.id == iteminfo.id) {
+            v.qty = parseInt(v.qty) + parseInt(iteminfo.qty);
+            itemincart = true;
+          }
+        });
+        if (!itemincart) {
+          shopcart.push(iteminfo);
+        }
+        localStorage.setItem('scart', JSON.stringify(shopcart));
+        outputCart();
       }
 
-      function outputCard(){
-        if(sessionStorage.getItem('scart') != null){
-          shopcart = JSON.parse(sessionStorage.getItem('scart'));
+      function outputCart(){
+        if (localStorage.getItem('scart') != null) {
+          shopcart = JSON.parse(localStorage.getItem('scart'));
         }
-        var html = '<table>';
+        var html = '<table>'+
+                      '<tr>' + 
+                        '<th>Item</th>' + 
+                        '<th>Quantity</th>' + 
+                        '<th>Cost</th>' + 
+                        '<th>Id</th>' + 
+                        '<th>subtotal</th>' + 
+                        '<th>Options</th>' + 
+                      '</tr>';
         var total = 0;
-        shopcart.forEach(function(v){
+
+        shopcart.forEach(function (v) {
           var stotal = v.qty * v.price;
           total += stotal;
-          html += '<tr><td>'+v.name+'</td><td>'+stotal+'</td></tr>';
+          html += 
+          '<tr>' + 
+            '<td>'+ v.name + '(' + v.s + ')</td>' + 
+            '<td>'+ v.qty + '</td>' + 
+            '<td>'+ v.price + '</td>' + 
+            '<td>'+ v.id + '</td>' + 
+            '<td>'+ fMoney(stotal) + '</td>' +
+            '<td><span class="remove btn" onclick="remove('+ v.id +')">x</span></td>' + 
+          '</tr>';
         })
-        html += '</table>';
-        document.getElementById('output').innerHTML = html;
+        html += '<tr><td colspan=6> Total: ' + fMoney(total) + '</td></tr></table>';
+        document.getElementById('output2').innerHTML = html;
       }
 
       function buildItems(){
@@ -127,13 +167,29 @@
                   'data-name="'+ v.name +'" '+ 
                   'data-s="'+ v.details +'" '+
                   'data-price="'+ v.cost +'" '+
-                  'data-s="'+ v.details +'" '+
                   'data-id="'+ x +'"' +
-                  '> Add to Cart </a></div></div>';
-          x++;
+                  '> Add to Cart </a></div>' + 
+                  fMoney(v.cost) +
+                  '</div>';
+                x++;
           // console.log(v);
         })
-        document.getElementById('output2').innerHTML += html;
+        document.getElementById('output').innerHTML += html;
+      }
+
+      function remove(id){
+        for(var x = 0; x < shopcart.length; x++){
+          if(shopcart[x].id == id){
+            var rem = shopcart.splice(x,1);
+            console.log(rem);
+          }
+        }
+        localStorage.setItem('scart', JSON.stringify(shopcart));
+        outputCart();
+      }
+
+      function fMoney(n){
+        return '$'+(n/100).toFixed(2);
       }
   </script>
 </body>
