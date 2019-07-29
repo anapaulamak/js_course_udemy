@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+    canvas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+  <br>
+  <input type="file" id="imgLoader">
+  <br><br>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var imgLoader = document.getElementById('imgLoader');
+    imgLoader.addEventListener('change', upImage, false);
+
+    function upImage(){
+      var r = new FileReader();
+      r.readAsDataURL(event.target.files[0]);
+      r.onload = function(e){
+        var img = new Image();
+        img.src = event.target.result;
+        img.onload = function(){
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          ctx.font = "30px Arial";
+          ctx.fillText('JavaScrip Course', 10, 100);
+        }
+        console.log(r);
+      }
+    }
+
+  </script>
+</body>
+</html>
