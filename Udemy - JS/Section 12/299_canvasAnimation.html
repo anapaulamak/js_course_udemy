@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+    canvas{
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="output">Complete JavaScript Course</div>
+  <br>
+  <canvas id="canvas"></canvas>
+
+  <script>
+    window.onload = init;
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.height = 600;
+    canvas.width = 500;
+
+    var pos = {x:0,y:50};
+    var pos1 = {x:70,y:100};
+
+
+    function init(){
+      draw();      
+    }
+
+    function draw(){
+      pos.x = pos.x + 5;
+      pos1.y = pos1.y + 5;
+
+      if(pos.x > canvas.width){pos.x = 0;}
+      if(pos1.y > canvas.height){pos1.y = 0;}
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.beginPath();
+      ctx.fillStyle = 'red';
+      ctx.arc(pos.x, pos.y, 50, 0, Math.PI*2);
+      ctx.fill();
+      ctx.closePath();
+
+      ctx.beginPath();
+      ctx.fillStyle = 'blue';
+      ctx.arc(pos1.x, pos1.y, 70, 0, Math.PI*2);
+      ctx.fill();
+      ctx.closePath();
+
+      window.setTimeout(draw, 50);
+    }
+  </script>
+</body>
+</html>
