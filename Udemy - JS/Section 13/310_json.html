@@ -11,29 +11,39 @@
       text-align: center;
       font-family: 'Open Sans', sans-serif;
     }
+    .toggle{
+      padding: 10px;
+      background: #e06666;
+      font-size: 1.3em;
+      margin: 10px;
+    }
+    .active{
+      background: #70c570;
+      color: white;
+    }
   </style>
 </head>
 <body>
   <div>Party invite checklist</div>
   <br>
   <div id="output"></div>
-  Guest Name:
-  <input type="text" id="guestName">
-  +
-  <input type="number" id="guestNum" value="0">
+  Guest Name: <input type="text" id="guestName">
+  + <input type="number" id="guestNum" value="0">
   <br><br>
   <input type="button" value="add">
    
-
   <script src="json.json"></script>
   <script>
-    var party = JSON.parse(data);
+    var party = [];
+    var el;
     var output = document.getElementById('output');
+    window.onload = buildList;
     var addGuest = document.querySelector('input[type="button"]');
+
     addGuest.addEventListener('click', function(e){
       var g = document.getElementById('guestName');
       var n = document.getElementById('guestNum');
-      message('x', g.value + '+' + n.value, party.lenght);
+      message('✘ ', g.value + ' + ' + n.value, party.length, '');
 
       party.push({
         name:g.value,
@@ -44,12 +54,31 @@
       n.value = 0;
     })
 
-    function buildList(){
+    output.addEventListener('click', function(e){
+      el = e.target;
+      var ds = el.dataset;
+      el.classList.toggle('active');
+      el.children[0].innerHTML = el.children[0].innerHTML == '✓ ' ? '✘ ': '✓ ';
+      party[ds.id].status = party[ds.id].status ? 'false': 'true';
+      console.log(party);
+    })
 
+    function buildList(){
+      party = JSON.parse(data);
+      for(var x = 0; x < party.length; x++){
+        var person = party[x].name + ' + ' + party[x].guests;
+
+        if(party[x].status){
+          message('✓ ', person, x, 'active');
+        }
+        else{
+          message('✘ ', person, x, '');
+        }
+      }
     }
 
-    function message(m, person, id){
-      output.innerHTML += '<div class="toggle" data-id="'+ id +'" data-person="'+ person +'">' + 
+    function message(m, person, id, c){
+      output.innerHTML += '<div class="toggle '+ c +'" data-id="'+ id +'" data-person="'+ person +'">' + 
                             '<span>'+ m +'</span>'+ person +
                           '</div>';
     }
