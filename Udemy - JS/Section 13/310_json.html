@@ -50,6 +50,7 @@
         guests:Number(n.value),
         status:false
       })
+      localStorage.setItem('party', JSON.stringify(party));
       g.value = "";
       n.value = 0;
     })
@@ -58,13 +59,21 @@
       el = e.target;
       var ds = el.dataset;
       el.classList.toggle('active');
-      el.children[0].innerHTML = el.children[0].innerHTML == '✓ ' ? '✘ ': '✓ ';
+      el.children[0].innerHTML = el.children[0].innerHTML == '✘ ' ? '✓ ':'✘ ';
       party[ds.id].status = party[ds.id].status ? 'false': 'true';
       console.log(party);
     })
 
     function buildList(){
+      if(localStorage.getItem('party')){
+        party = JSON.parse(localStorage.getItem('party'));
+      }
+      else{
+        party = JSON.parse(data);
+      }
+
       party = JSON.parse(data);
+
       for(var x = 0; x < party.length; x++){
         var person = party[x].name + ' + ' + party[x].guests;
 
