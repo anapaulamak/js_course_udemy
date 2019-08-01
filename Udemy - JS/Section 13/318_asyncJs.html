@@ -11,6 +11,16 @@
       text-align: center;
       font-family: 'Open Sans', sans-serif;
     }
+    .toggle{
+      padding: 10px;
+      background: #e06666;
+      font-size: 1.3em;
+      margin: 10px;
+    }
+    .active{
+      background: #70c570;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -23,26 +33,80 @@
   <input type="button" value="add">
    
   <script>
+    var party = [];
+    var el;
+    var output = document.getElementById('output');
     window.onload = init;
+    var addGuest = document.querySelector('input[type="button"]');
+
+    addGuest.addEventListener('click', function(e){
+      var g = document.getElementById('guestName');
+      var n = document.getElementById('guestNum');
+      message('✘ ', g.value + ' + ' + n.value, party.length, '');
+
+      party.push({
+        name:g.value,
+        guests:Number(n.value),
+        status:false
+      })
+      localStorage.setItem('party', JSON.stringify(party));
+      g.value = "";
+      n.value = 0;
+    })
+
+    output.addEventListener('click', function(e){
+      el = e.target;
+      var ds = el.dataset;
+      el.classList.toggle('active');
+      el.children[0].innerHTML = el.children[0].innerHTML == '✘ ' ? '✓ ':'✘ ';
+      party[ds.id].status = party[ds.id].status ? 'false': 'true';
+      console.log(party);
+    })
+
     function init(){
-      loadJSON();
-      // loadJSON(function(response){
-      //   console.log(response);
-      // })
+      loadJSON(function(response){
+        party = JSON.parse(response);
+        buildList();
+      }, 'https://api.myjson.com/bins/129l5p')
     }
 
-    function loadJSON(callback){
+    function buildList(){
+      if(localStorage.getItem('party')){
+        party = JSON.parse(localStorage.getItem('party'));
+      }
+      else{
+        party = JSON.parse(data);
+      }
+
+      for(var x = 0; x < party.length; x++){
+        var person = party[x].name + ' + ' + party[x].guests;
+
+        if(party[x].status){
+          message('✓ ', person, x, 'active');
+        }
+        else{
+          message('✘ ', person, x, '');
+        }
+      }
+    }
+
+    function message(m, person, id, c){
+      output.innerHTML += '<div class="toggle '+ c +'" data-id="'+ id +'" data-person="'+ person +'">' + 
+                            '<span>'+ m +'</span>'+ person +
+                          '</div>';
+    }
+
+    function loadJSON(callback, url){
       var xHR = new XMLHttpRequest;
       xHR.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200){
-          var myObj = JSON.parse(this.responseText);
-          console.log(myObj);
+          callback(this.responseText);
+        }else{
+          return false;
         }
       }
 
-
-
-      xHR.open('GET', 'https://api.myjson.com/bins/129l5p', true);
+      xHR.open('GET', url, true);
       //sincronous - true, asyncronous - false
       xHR.send();
       console.log(xHR);
