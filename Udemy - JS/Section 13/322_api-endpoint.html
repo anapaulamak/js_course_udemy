@@ -11,11 +11,24 @@
       text-align: center;
       font-family: 'Open Sans', sans-serif;
     }
+		.box{
+			font-size: 1.5em;
+			background: aliceblue;
+			padding: 10px;
+			margin: 10px;
+		}
   </style>
 </head>
 <body>
   <div id="output">Complete JavaScript Course</div>
-  <input type="button" id="myButton" value="Load Data">
+	<input type="button" id="myButton" value="New Country">
+	<br>
+	<input type="text" id="guess">
+	<br>
+	<input type="button" id="myGuess" value="Guess">
+
+	<div id="output1" class="box"></div>
+	<div id="output2" class="box"></div>
   
   <script>
     window.onload = init;
@@ -33,10 +46,29 @@
 			xHR.send();
 		}
 
+		function guessWord(){
+			
+		}
+
 		function rOutput(){
 			var myObj = JSON.parse(this.responseText);
 			pick = myObj[Math.floor(Math.random() * myObj.length)];
-			console.log(pick);
+			var ww = '';
+			for(var x=0; x<pick.name.length; x++){
+				ww += '-';
+			}
+
+			document.getElementById('output1').innerHTML = shuffleWord(pick.name);
+			document.getElementById('output2').innerHTML = ww;
+		}
+
+		function shuffleWord(w){
+			var response = '';
+			w = w.split('');
+			while(w.length>0){
+				response += w.splice(Math.floor(Math.random() * w.length), 1);
+			}
+			return response;
 		}
 
   </script>
