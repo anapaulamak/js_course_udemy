@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body{
+      text-align: center;
+      font-family: 'Open Sans', sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="output">Complete JavaScript Course</div>
+  <input type="button" id="myButton" value="Load Data">
+  
+  <script>
+    window.onload = init;
+		var pick = "";
+		//https://restcountries.eu/rest/v2/all
+
+    function init(){
+			document.getElementById('myButton').addEventListener('click', myLoader, false);
+    }
+
+		function myLoader(){
+			var xHR = new XMLHttpRequest();
+			xHR.onload = rOutput;
+			xHR.open('GET','https://restcountries.eu/rest/v2/all', true);
+			xHR.send();
+		}
+
+		function rOutput(){
+			var myObj = JSON.parse(this.responseText);
+			pick = myObj[Math.floor(Math.random() * myObj.length)];
+			console.log(pick);
+		}
+
+  </script>
+
+</body>
+</html>
