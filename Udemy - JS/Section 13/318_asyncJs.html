@@ -45,9 +45,9 @@
       message('✘ ', g.value + ' + ' + n.value, party.length, '');
 
       party.push({
-        name:g.value,
-        guests:Number(n.value),
-        status:false
+        name:g.value
+        ,guests:Number(n.value)
+        ,status:false
       })
       localStorage.setItem('party', JSON.stringify(party));
       g.value = "";
