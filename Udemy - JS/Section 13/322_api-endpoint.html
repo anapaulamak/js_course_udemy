@@ -26,7 +26,8 @@
 	<input type="text" id="guess">
 	<br>
 	<input type="button" id="myGuess" value="Guess">
-
+	<br>
+	<img src="" width="150px">
 	<div id="output1" class="box"></div>
 	<div id="output2" class="box"></div>
   
@@ -37,7 +38,9 @@
 
     function init(){
 			document.getElementById('myButton').addEventListener('click', myLoader, false);
-    }
+			document.getElementById('myGuess').addEventListener('click', guessWord, false);
+    
+		}
 
 		function myLoader(){
 			var xHR = new XMLHttpRequest();
@@ -47,7 +50,20 @@
 		}
 
 		function guessWord(){
-			
+			var g = document.getElementById('guess').value;
+			var userGuess = '';
+			g.toLowerCase();
+			for(var x=0; x<pick.name.length; x++){
+				if(x>=g.length){
+					break;
+				}
+				if(g[x] == pick.name[x].toLowerCase()){
+					userGuess += g[x];
+				}else{
+					userGuess += '-';
+				}
+				document.getElementById('output2').innerHTML = userGuess;
+			}
 		}
 
 		function rOutput(){
@@ -57,7 +73,7 @@
 			for(var x=0; x<pick.name.length; x++){
 				ww += '-';
 			}
-
+			document.querySelector('img').src = pick.flag;
 			document.getElementById('output1').innerHTML = shuffleWord(pick.name);
 			document.getElementById('output2').innerHTML = ww;
 		}
@@ -68,7 +84,7 @@
 			while(w.length>0){
 				response += w.splice(Math.floor(Math.random() * w.length), 1);
 			}
-			return response;
+			return response.toLowerCase();
 		}
 
   </script>
